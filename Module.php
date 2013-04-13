@@ -31,4 +31,12 @@ class Module
         );
     }
     
+    public function getControllerConfig() {
+        return array(
+            'invokables' => array(
+                'MvaModuleTemplate\Controller\Index' => 'MvaModuleTemplate\Controller\IndexController'
+            ),
+        );
+    }
+    
 }
