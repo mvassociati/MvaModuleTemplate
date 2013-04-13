@@ -1,1 +1,18 @@
-<p>Empty page</p>
+<p>Dog list</p>
+<div><a href="<?php echo $this->url('mva-module-template/default', array('controller' => 'index', 'action' => 'new'))?>">Add</a></div>
+
+<?php if (count($this->as_messages)) { ?>
+<div style="border: 2px solid blue">
+<?php foreach ($this->as_messages as $s_msg) { ?>
+<p><?php echo $s_msg?></p>
+<?php } ?>
+</div>
+<?php } ?>
+
+<div>
+<?php foreach($this->aI_dogs as $I_dog) { ?>
+<p><?php echo $I_dog->getName()?> 
+- <a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'edit', 'id' => $I_dog->getId()))?>">edit</a> 
+- <a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'delete', 'id' => $I_dog->getId()))?>">delete</a></p>
+<?php } ?>
+</div>
