@@ -107,11 +107,7 @@ class IndexController extends AbstractActionController
         }
         
         $I_entity = $this->I_service->getEntity($i_id);
-        if ($I_entity === null ){
-            $this->getResponse()->setStatusCode(404);    //@todo there is a better way?
-            return;
-        }
-        
+                
         return $I_entity;
         
     }

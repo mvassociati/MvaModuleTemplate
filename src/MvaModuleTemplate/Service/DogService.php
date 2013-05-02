@@ -19,7 +19,13 @@ class DogService {
     }
     
     public function getEntity($i_id){
-        return $this->I_dogRepository->find($i_id);
+        $I_entity = $this->I_dogRepository->find($i_id);
+        
+        if ($I_entity === null ){
+            throw new \Exception('Entity not found');    //@todo throw custom exception type
+        }
+        
+        return $I_entity;
     }
     
     /**
