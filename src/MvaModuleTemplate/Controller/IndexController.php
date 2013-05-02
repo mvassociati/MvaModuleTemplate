@@ -26,9 +26,6 @@ class IndexController extends AbstractActionController
     
     public function newAction() 
     {
-        // set form action
-        $this->I_form->setAttribute('action', '/mva-module-template/process');
-        
         $I_view = new ViewModel(array('form' => $this->I_form, 'title' => 'New dog'));
         $I_view->setTemplate('mva-module-template/index/dog-form');
         return $I_view;
@@ -37,10 +34,7 @@ class IndexController extends AbstractActionController
     public function editAction()
     {
         $I_dog = $this->getEntityFromQuerystring();
-        
-        // set form action
-        $this->I_form->setAttribute('action', '/mva-module-template/process');
-        
+                
         // bind entity values to form
         $this->I_form->bind($I_dog);
         

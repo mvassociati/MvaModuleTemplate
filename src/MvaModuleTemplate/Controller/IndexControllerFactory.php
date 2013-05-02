@@ -18,6 +18,9 @@ class IndexControllerFactory implements FactoryInterface
         $I_formFilter = new \MvaModuleTemplate\Form\DogFilter();
         $I_form->setInputFilter($I_formFilter);
         
+        // set form action
+        $I_form->setAttribute('action', '/mva-module-template/process');
+        
         $I_service = $serviceLocator->getServiceLocator()->get('MvaModuleTemplate\Service\DogService');
         
         return new IndexController($I_service, $I_form);
