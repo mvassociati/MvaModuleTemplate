@@ -1,5 +1,7 @@
 <?php
 
+namespace MvaModuleTemplate;
+
 return array(
     'router' => array(
         'routes' => array(
@@ -7,7 +9,7 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /MvaModuleTemplate/:controller/:action
-            'application' => array(
+            'mva-module-template' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/mva-module-template',
@@ -19,6 +21,8 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+                    
+                    // Default routes
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
@@ -31,10 +35,39 @@ return array(
                             ),
                         ),
                     ),
+                    
+                    // Default CRUD routes
+                    'crud' => array(
+                        'type' => 'Zend\Mvc\Router\Http\Segment',
+                        'options' => array(
+                            'route'    => '/:action[/:id]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'         => '[0-9]*',
+                            ),
+                        ),
+                    ),
+                                        
                 ),
             ),
         ),
     ),
+    
+    'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                )
+            ),
+        ),
+    ),
+    
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
