@@ -26,10 +26,20 @@ class Module
     
     public function getControllerConfig() {
         return array(
-            'invokables' => array(
-                'MvaModuleTemplate\Controller\Index' => 'MvaModuleTemplate\Controller\IndexController'
+            'factories' => array(
+                'MvaModuleTemplate\Controller\Index' => 'MvaModuleTemplate\Controller\IndexControllerFactory'
             ),
         );
+    }
+    
+    public function getServiceConfig() {
+    
+        return array(
+            'factories' => array(
+                'MvaModuleTemplate\Service\DogService' => 'MvaModuleTemplate\Service\DogServiceFactory',
+            ),
+        );
+    
     }
     
 }
