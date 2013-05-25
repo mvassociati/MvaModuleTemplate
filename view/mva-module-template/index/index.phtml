@@ -1,4 +1,4 @@
-<p>Dog list</p>
+<h1>Dog list</h1>
 <div><a href="<?php echo $this->url('mva-module-template/default', array('controller' => 'index', 'action' => 'new'))?>">Add</a></div>
 
 <?php if (count($this->as_messages)) { ?>
@@ -10,7 +10,7 @@
 <?php } ?>
 
 <div>
-<?php foreach($this->aI_dogs as $I_dog) { ?>
+<?php foreach($this->aI_entities as $I_dog) { ?>
 <p><?php echo $I_dog->getName()?> 
 - <a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'edit', 'id' => $I_dog->getId()))?>">edit</a> 
 - <a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'delete', 'id' => $I_dog->getId()))?>">delete</a></p>
