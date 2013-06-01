@@ -18,6 +18,20 @@ class Dog extends Form
         $name = new Element\Text('name');
         $name->setLabel('name');
         $this->add($name);
+
+        $I_breed = new Element\Select('breed');
+        $I_breed->setLabel('Breed');
+        $this->add($I_breed);
+        
+        $I_birthdate = new Element\Text('birthdate');
+        $I_birthdate->setLabel('Birthdate');
+        $I_birthdate->setAttributes( array(
+            'class' => 'large',
+            'id' => 'fd',
+            'class' => 'date-picker',
+            'data-date-format'=>'dd.mm.yyyy'
+            ) );
+        $this->add($I_birthdate);
         
         $isagoodwatchdog = new Element\Radio('isagoodwatchdog');
         $isagoodwatchdog->setLabel('Is a good watchdog?');
@@ -26,7 +40,7 @@ class Dog extends Form
                              '0' => 'No',
              ));
         $this->add($isagoodwatchdog);
-        
+
         $send = new Element\Button('submit');
         $send->setLabel('Submit');
         $send->setAttributes(array(

@@ -4,7 +4,7 @@ namespace MvaModuleTemplate\Service;
 
 use MvaModuleTemplate\Entity\Dog;
 
-class DogService extends \MvaCrud\Service\BaseCrudService {
+class DogService extends \MvaCrud\Service\CrudService {
     
     public function __construct($I_entityManager) {
         $this->I_entityRepository  = $I_entityManager->getRepository('MvaModuleTemplate\Entity\Dog');
