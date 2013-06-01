@@ -37,6 +37,7 @@ class Module
         return array(
             'factories' => array(
                 'MvaModuleTemplate\Service\DogService' => 'MvaModuleTemplate\Service\DogServiceFactory',
+                'MvaModuleTemplate\Service\BreedService' => 'MvaModuleTemplate\Service\BreedServiceFactory',
             ),
         );
     

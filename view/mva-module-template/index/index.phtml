@@ -1,5 +1,15 @@
-<p>Dog list</p>
-<div><a href="<?php echo $this->url('mva-module-template/default', array('controller' => 'index', 'action' => 'new'))?>">Add</a></div>
+<h1><?php echo $this->s_title; ?></h1>
+
+<h5>Custom view index with additional variables</h5>
+
+<div>
+<?php echo 'Cippa => '.$this->cippa; ?>
+<br>
+<?php echo 'Foo => '.$this->foo; ?>
+<br><br>
+</div>
+
+<div><a class="btn btn-success" href="<?php echo $this->url('mva-module-template/default', array('controller' => 'index', 'action' => 'new'))?>">Add</a></div>
 
 <?php if (count($this->as_messages)) { ?>
 <div style="border: 2px solid blue">
@@ -10,9 +20,31 @@
 <?php } ?>
 
 <div>
-<?php foreach($this->aI_dogs as $I_dog) { ?>
-<p><?php echo $I_dog->getName()?> 
-- <a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'edit', 'id' => $I_dog->getId()))?>">edit</a> 
-- <a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'delete', 'id' => $I_dog->getId()))?>">delete</a></p>
+<?php foreach($this->aI_entities as $I_dog) { ?>
+<div class="row">
+   <div class="span1">
+        <?php echo $I_dog->getName()?> 
+   </div>
+   <div class="span1">
+        <?php 
+        if ( ! is_null($I_dog->getBirthdate()) )
+            echo $I_dog->getBirthdate()->format('d.m.Y');
+        ?> 
+   </div>
+   <div class="span1">
+        <?php 
+        if ( ! is_null($I_dog->getBreed()) )
+            echo $I_dog->getBreed()->getName();
+        ?> 
+   </div>
+    <div class="span">
+        <i class="icon-search"></i><a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'detail', 'id' => $I_dog->getId()))?>">detail</a>
+        
+        <i class="icon-edit"></i><a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'edit', 'id' => $I_dog->getId()))?>">edit</a>
+        
+        <i class="icon-remove"></i><a href="<?php echo $this->url('mva-module-template/crud', array('action' => 'delete', 'id' => $I_dog->getId()))?>">delete</a>
+    </div>
+    
+</div>
 <?php } ?>
 </div>
