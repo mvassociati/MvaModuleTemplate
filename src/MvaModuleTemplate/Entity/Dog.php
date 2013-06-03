@@ -11,6 +11,7 @@ use Zend\Crypt\Password\Bcrypt;
  *
  * @ORM\Table(name="dog")
  * @ORM\Entity(repositoryClass="MvaModuleTemplate\Entity\Repository\DogRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Dog
 {
@@ -37,6 +38,24 @@ class Dog
      * @ORM\Column(name="isagoodwatchdog", type="boolean", nullable=false)
      */
     private $isagoodwatchdog;
+    
+    /**
+     *
+     * @var date
+     * 
+     * @ORM\Column(name="birthdate", type="date", nullable=true)
+     */
+    private $birthdate;
+    
+        /**
+     * @var \MvaModuleTemplate\Entity\Breed
+     * 
+     * @ORM\ManyToOne(targetEntity="MvaModuleTemplate\Entity\Breed")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="breed", referencedColumnName="id",nullable=true)
+     * })
+     */
+    private $breed;
     
     public static function create($data) {
         $dog = new Dog();
@@ -100,16 +119,71 @@ class Dog
     {
         return $this->isagoodwatchdog;
     }
+
+    public function getBirthdate() {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate($birthdate) {
+        $this->birthdate = $birthdate;
+        return $this;
+    }
+    
+    /**
+     * Set breed
+     *
+     * @param \MvaModuleTemplate\Entity\Breed $breed
+     * @return Incarico
+     */
+    public function setBreed(\MvaModuleTemplate\Entity\Breed $breed = null)
+    {
+        $this->breed = $breed;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \MvaModuleTemplate\Entity\Breed
+     */
+    public function getBreed()
+    {
+        return $this->breed;
+    }
+
+    /**
+     * @ORM\PrePersist @ORM\PreUpdate
+     */
+    public function isAllowedToInsert(){
+        //throw new \Exception('Non puoi inserire o aggiornare entità');
+    }
+    
+    /**
+     * @ORM\PostLoad
+     */
+    public function isAllowedToRead(){
+        //throw new \Exception('Non puoi leggere');
+    }
+    
     
     public function fillWith($data){
+        var_dump($data['birthdate']);
         $this->id = (isset($data['id'])) ? $data['id'] : null;
         $this->name = (isset($data['name'])) ? $data['name'] : $this->name;
         $this->isagoodwatchdog = (isset($data['isagoodwatchdog'])) ? $data['isagoodwatchdog'] : $this->isagoodwatchdog;
+        $this->birthdate        = (isset($data['birthdate']) and $data['birthdate']!= '')       ? new \DateTime($data['birthdate'])         : null;
+        $this->breed        = (isset($data['breed']))       ? $data['breed']        : null;
     }
 
     public function getArrayCopy()
     {
-        return get_object_vars($this);
+        $am_obj = get_object_vars($this);
+        if ($am_obj['birthdate']){
+            $am_obj['birthdate'] = $am_obj['birthdate']->format('d.m.Y');
+        }
+        return $am_obj;
+
     }
     
 }
