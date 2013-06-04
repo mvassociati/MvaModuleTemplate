@@ -35,19 +35,7 @@ return array(
                             ),
                         ),
                     ),
-                    
-                    // Default CRUD routes
-                    'crud' => array(
-                        'type' => 'Zend\Mvc\Router\Http\Segment',
-                        'options' => array(
-                            'route'    => '/:action[/:id]',
-                            'constraints' => array(
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id'         => '[0-9]*',
-                            ),
-                        ),
-                    ),
-                                        
+                                  
                 ),
             ),
         ),
@@ -72,22 +60,23 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
-    ),
+    ),    
     
-    'MvaCrud' => array(
-        __NAMESPACE__ => array(
-            's_indexTitle' => 'Index page default',
-            // 's_indexTemplate'   => 'crud/index/index',
-            's_newTitle'  => 'New page default',
-            's_newTemplate'   => 'crud/index/default-form',
-            's_editTitle'  => 'Edit page default',
-            's_editTemplate'   => 'crud/index/default-form',
-            's_detailTitle' => 'Detail page default',
-            's_detailTemplate' => 'crud/index/detail',
-            's_processErrorTitle' => 'Form errors page default',
-            's_processErrorTemplate' => 'crud/index/default-form',
-            's_deleteRouteRedirect' => 'crud',
-            's_processRouteRedirect' => 'crud',
-        )
-    )
+    
+    /*'MvaCrud' => array(
+        's_indexTitle' => 'Index page MvaCrud default',
+        's_indexTemplate'   => 'mva-crud/index/index',
+        's_newTitle'  => 'New page MvaCrud default',
+        's_newTemplate'   => 'mva-crud/index/default-form',
+        's_editTitle'  => 'Edit page MvaCrud default',
+        's_editTemplate'   => 'mva-crud/index/default-form',
+        's_detailTitle' => 'Detail page MvaCrud default',
+        's_detailTemplate' => 'mva-crud/index/detail',
+        's_processErrorTitle' => 'Error page MvaCrud default',
+        's_processErrorTemplate' => 'mva-crud/index/default-form',
+        's_deleteRouteRedirect' => 'mva-crud',
+        's_processRouteRedirect' => 'mva-crud',
+    ),*/
+    
+    
 );

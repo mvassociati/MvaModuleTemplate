@@ -47,7 +47,7 @@ class Dog
      */
     private $birthdate;
     
-        /**
+    /**
      * @var \MvaModuleTemplate\Entity\Breed
      * 
      * @ORM\ManyToOne(targetEntity="MvaModuleTemplate\Entity\Breed")

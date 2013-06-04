@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Breed
  *
- * @ORM\Table(name="dog_breed")
+ * @ORM\Table(name="breed")
  * @ORM\Entity(repositoryClass="MvaModuleTemplate\Entity\Repository\BreedRepository")
  */
 class Breed
@@ -24,7 +24,7 @@ class Breed
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=100, nullable=false)
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
     private $name;
 
@@ -64,7 +64,4 @@ class Breed
         return $this->name;
     }
     
-    public function fetchAllAsArray(){
-        
-    }
 }
